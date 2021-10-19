@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import process from 'process';
-import {projectDir} from '../../app';
 
 export class WhiteLinkManagerClass {
   public filePath = process.cwd()+'/data/whiteLink.json';
@@ -12,7 +11,6 @@ export class WhiteLinkManagerClass {
   }
 
   public saveData = (data: any) => {
-    console.log(projectDir());
     try {
       fs.readFile(this.filePath, (err) => {
         if (err) {

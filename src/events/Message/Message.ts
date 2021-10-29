@@ -1,6 +1,6 @@
 import {Message} from 'discord.js';
 import {discordWhiteList, regexLink} from '../../constants';
-import whiteLinkManager from '../../manager/WhiteLinkManager/WhiteLinkManager';
+import {WhiteLinkManagerClass} from '../../manager/WhiteLinkManager/WhiteLinkManager';
 
 class MessageClass {
   public messageCreate = async (message: Message, prefixes: string[]): Promise<any> => {
@@ -8,7 +8,7 @@ class MessageClass {
 
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {
       if (message.content.match(regexLink)) {
-        const filesLink: string[] = require('../whiteLink.json');
+        const filesLink: string[] = require(WhiteLinkManagerClass.filePath);
         for (const match of message.content.match(regexLink)) {
           if (!filesLink.includes(match)) {
             await message.delete();
@@ -26,7 +26,7 @@ class MessageClass {
 
     if (command === 'whitelink') {
       if (!args[0]) return message.reply({content: 'Vous devez insérer un nom de domaine!'});
-      whiteLinkManager.addLink(args[0]);
+      WhiteLinkManagerClass.addLink(args[0]);
     }
     return message;
   }

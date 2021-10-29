@@ -6,7 +6,7 @@ export const defaultWhiteLink: string[] = ['https://www.youtube.com', 'https://d
   'https://get.foundation', 'https://tailwindcss.com', 'https://materializecss.com', 'https://getmdl.io', 'https://bulma.io',
   'http://getskeleton.com', 'https://semantic-ui.com', 'https://purecss.io', 'https://getuikit.com', 'https://www.drupal.org',
   'https://www.drupal.fr', 'https://symfony.com', 'https://getcomposer.org', 'https://sylius.com', 'https://www.php.net',
-  'https://www.google.com',
+  'https://www.google.com', 'https://tenor.com', 'https://discord.com',
 ];
 
 export const discordWhiteList: string[] = ['896803623886028900', '779076217877561402'];

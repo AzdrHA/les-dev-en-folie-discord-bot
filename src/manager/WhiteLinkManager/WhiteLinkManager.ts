@@ -2,30 +2,27 @@ import * as fs from 'fs';
 import process from 'process';
 
 export class WhiteLinkManagerClass {
-  public filePath = process.cwd()+'/data/whiteLink.json';
+  static filePath = process.cwd()+'/data/whiteLink.json';
 
-  public addLink = (link: string) => {
-    const filesLink = require(this.filePath);
+  static addLink = (link: string) => {
+    const filesLink = require(WhiteLinkManagerClass.filePath);
     filesLink.push(link);
-    this.saveData(filesLink);
+    WhiteLinkManagerClass.saveData(filesLink);
   }
 
-  public saveData = (data: any) => {
+  static saveData = (data: any) => {
     try {
-      fs.readFile(this.filePath, (err) => {
+      fs.readFile(WhiteLinkManagerClass.filePath, (err) => {
         if (err) {
-          fs.writeFile(this.filePath, JSON.stringify(data), (err1) => {
+          fs.writeFile(WhiteLinkManagerClass.filePath, JSON.stringify(data), (err1) => {
             if (err1) throw err1;
-            console.log('The file was created in path %s', this.filePath);
+            console.log('The file was created in path %s', WhiteLinkManagerClass.filePath);
           });
         }
-        fs.writeFileSync(this.filePath, JSON.stringify(data));
+        fs.writeFileSync(WhiteLinkManagerClass.filePath, JSON.stringify(data));
       });
     } catch (e) {
       throw e;
     }
   }
 }
-
-const whiteLinkManager = new WhiteLinkManagerClass();
-export default whiteLinkManager;

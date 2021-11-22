@@ -28,9 +28,9 @@ class App extends Client {
     console.log(`Logged in as ${this.user.tag}!`);
     WhiteLinkManagerClass.saveData(defaultWhiteLink);
 
+    this.user.setStatus('idle');
     if (this.development) {
       this.user.setPresence({
-        status: 'idle',
         activities: [{
           name: 'update',
           type: 'PLAYING',

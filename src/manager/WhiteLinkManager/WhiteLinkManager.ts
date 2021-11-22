@@ -4,22 +4,30 @@ import process from 'process';
 export class WhiteLinkManagerClass {
   static filePath = process.cwd()+'/data/whiteLink.json';
 
-  static addLink = (link: string) => {
-    const filesLink = require(WhiteLinkManagerClass.filePath);
-    filesLink.push(link);
-    WhiteLinkManagerClass.saveData(filesLink);
+  static addLink = async (link: string) => {
+    return new Promise(async (resolve, reject) => {
+      const filesLink = require(WhiteLinkManagerClass.filePath);
+      if (link.endsWith('/')) link.slice(0, -1);
+      const fileAlreadySaved = filesLink.filter((el) => el.startsWith(link));
+      if (fileAlreadySaved) {
+        return reject(new Error('link already saved'));
+      }
+      filesLink.push(link);
+      await WhiteLinkManagerClass.saveData(filesLink);
+      resolve('');
+    });
   }
 
-  static saveData = (data: any) => {
+  static saveData = async (data: any) => {
     try {
-      fs.readFile(WhiteLinkManagerClass.filePath, (err) => {
+      await fs.readFile(WhiteLinkManagerClass.filePath, async (err) => {
         if (err) {
-          fs.writeFile(WhiteLinkManagerClass.filePath, JSON.stringify(data), (err1) => {
+          await fs.writeFile(WhiteLinkManagerClass.filePath, JSON.stringify(data), (err1) => {
             if (err1) throw err1;
             console.log('The file was created in path %s', WhiteLinkManagerClass.filePath);
           });
         }
-        fs.writeFileSync(WhiteLinkManagerClass.filePath, JSON.stringify(data));
+        await fs.writeFileSync(WhiteLinkManagerClass.filePath, JSON.stringify(data));
       });
     } catch (e) {
       throw e;

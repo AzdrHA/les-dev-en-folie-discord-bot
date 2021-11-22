@@ -21,12 +21,22 @@ class App extends Client {
     this.login(this.token);
 
     this.on('ready', () => this.onReady());
-    this.on('messageCreate', (message) => messageCreate(message, this.prefixes));
+    this.on('messageCreate', (message) => messageCreate(message, this, this.prefixes));
   }
 
   private onReady = () => {
     console.log(`Logged in as ${this.user.tag}!`);
     WhiteLinkManagerClass.saveData(defaultWhiteLink);
+
+    if (this.development) {
+      this.user.setPresence({
+        status: 'idle',
+        activities: [{
+          name: 'update',
+          type: 'PLAYING',
+        }],
+      });
+    }
   }
 }
 

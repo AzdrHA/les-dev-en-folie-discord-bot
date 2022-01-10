@@ -1,8 +1,9 @@
-import {BitFieldResolvable, Client, IntentsString} from 'discord.js';
+import {BitFieldResolvable, Client, GuildMember, IntentsString} from 'discord.js';
 import {AppOptions} from '../../interfaces/IApp';
 import {defaultWhiteLink} from '../../constants';
 import messageCreate from '../../events/Message/Message';
 import {WhiteLinkManagerClass} from '../../manager/WhiteLinkManager/WhiteLinkManager';
+import {guildMemberAdd} from '../../events/Guild/guildMemberAdd';
 
 class App extends Client {
   public readonly token: string;
@@ -22,6 +23,7 @@ class App extends Client {
 
     this.on('ready', () => this.onReady());
     this.on('messageCreate', (message) => messageCreate(message, this, this.prefixes));
+    this.on('guildMemberAdd', (member) => guildMemberAdd(member));
   }
 
   private onReady = () => {

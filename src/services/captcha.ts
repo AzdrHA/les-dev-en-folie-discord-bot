@@ -8,7 +8,7 @@ export class Captcha {
   private linePath = projectDir + '/utils/lines';
   private lettersPath = projectDir + '/utils/letters';
   private expirationTime = 15; // in second
-  private roleID = '779825889554464818';
+  private roleID = process.env.WELCOME_ROLE;
 
   public constructor(member: GuildMember) {
     this.member = member;

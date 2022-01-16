@@ -7,8 +7,9 @@ export class Captcha {
   private member: GuildMember;
   private linePath = projectDir + '/utils/lines';
   private lettersPath = projectDir + '/utils/letters';
-  private expirationTime = 15; // in second
+  private expirationTime = 60; // in second
   private roleID = process.env.WELCOME_ROLE;
+  private invite = 'https://discord.gg/vGURVpCxuK';
 
   public constructor(member: GuildMember) {
     this.member = member;
@@ -45,7 +46,7 @@ export class Captcha {
         } else m.reply('Rôle introuvable');
       } else {
         if (this.member.guild.members.cache.get(this.member.id).kickable) {
-          m.reply('Vous avez été Kick pour Captcha incorrect!');
+          m.reply(`Vous avez été Kick pour Captcha incorrect!\n${this.invite}`);
           this.member.guild.members.cache.get(this.member.id).kick('failed captcha');
         }
       }
@@ -53,7 +54,7 @@ export class Captcha {
     collection.on('end', (collection, reason) => {
       if (reason === 'time') {
         if (this.member.guild.members.cache.get(this.member.id).kickable) {
-          this.member.send('Vous avez été Kick pour inactivité');
+          this.member.send(`Vous avez été Kick pour inactivité\n${this.invite}`);
           this.member.guild.members.cache.get(this.member.id).kick('failed captcha');
         }
       }

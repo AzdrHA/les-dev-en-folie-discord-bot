@@ -4,7 +4,7 @@ import App from './components/App/App';
 dotenv.config();
 
 new App({
-  development: false,
+  development: Boolean(process.env.DEVELOPMENT),
   token: process.env.TOKEN,
   prefixes: ['!', '<@899343860575121470>', '<@!899343860575121470>'],
   intents: [
@@ -12,5 +12,6 @@ new App({
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.DIRECT_MESSAGES,
     Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
   ],
 });

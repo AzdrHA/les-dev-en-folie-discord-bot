@@ -6,7 +6,7 @@ import App from '../../components/App/App';
 class MessageClass {
   public messageCreate = async (message: Message, client: App, prefixes: string[]): Promise<any> => {
     if (message.author.bot || message.guild && (!discordWhiteList.includes(message.guild.id))) return;
-    if (client.development && message.author.id !== '311874717504110593') return;
+    if (client.development && (message.channel.id !== '933413191994728510' || message.author.id !== '311874717504110593')) return;
 
     const prefix = prefixes.find((p) => message.content.toLowerCase().startsWith(p));
     const args: string[] = prefix ? message.content.slice(prefix.length).trim().split(/ +/g) : null;

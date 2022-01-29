@@ -1,7 +1,6 @@
 import {BitFieldResolvable, Client, IntentsString} from 'discord.js';
 import {AppOptions} from '../../interfaces/IApp';
-import {defaultWhiteLink} from '../../constants';
-import messageCreate from '../../events/Message/Message';
+import {messageCreate} from '../../events/Message/Message';
 import {WhiteLinkManagerClass} from '../../manager/WhiteLinkManager/WhiteLinkManager';
 import {guildMemberAdd} from '../../events/Guild/guildMemberAdd';
 
@@ -28,13 +27,13 @@ class App extends Client {
 
   private onReady = () => {
     console.log(`Logged in as ${this.user.tag}!`);
-    WhiteLinkManagerClass.saveData(defaultWhiteLink);
+    WhiteLinkManagerClass.saveData([]);
 
     this.user.setStatus('idle');
     if (this.development) {
       this.user.setPresence({
         activities: [{
-          name: 'update',
+          name: 'Grow cruelly like a warm tobacco.',
           type: 'PLAYING',
         }],
       });

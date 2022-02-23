@@ -6,14 +6,14 @@
   "LINK_ALREADY_ADDED": "<:warning:912363891034566666> Le lien a déjà été ajouté!",
   "VERIFICATION_OF_SECURITY": "Vérification de sécurité",
   "VERIFICATION_OF_SECURITY_TEXT": "Afin de vérifier que vous êtes bien un humain, entrer les caractères suivants.",
-  "CAPTCHA_AUTOMATIC_KICK": "Vous serez automatique expulsé dans {{TIME}}s si vous ne faite rien!",
-  "CORRECT_CAPTCHA_MESSAGE": ":white_check_mark: Captcha correct, vous avez dès maintenant accès au serveur.\nVous pouvez choisir vos rôles ici {{CHANNEL_ROLE}}",
+  "CAPTCHA_AUTOMATIC_KICK": "Vous serez automatique expulsé dans {TIME}s si vous ne faite rien!",
+  "CORRECT_CAPTCHA_MESSAGE": ":white_check_mark: Captcha correct, vous avez dès maintenant accès au serveur.\nVous pouvez choisir vos rôles ici {CHANNEL_ROLE}",
   "ROLE_NOT_FOUND": "Rôle introuvable",
   "ROLE_NOT_FOUND_LOG": "Rôle de bienvenu introuvable",
-  "CORRECT_CAPTCHA_MESSAGE_LOG": ":white_check_mark: {{MEMBER}} a passé la vérification !",
+  "CORRECT_CAPTCHA_MESSAGE_LOG": ":white_check_mark: {MEMBER} a passé la vérification !",
   "KICKED_INCORRECT_CAPTCHA": ":no_entry_sign: Vous avez été Kick pour Captcha incorrect!",
-  "KICKED_INCORRECT_CAPTCHA_LOG": ":no_entry_sign: {{MEMBER}} a été expulsé pour ne pas avoir complété le captcha !",
-  "KICKED_TOO_WAITING_CAPTCHA_LOG": ":no_entry_sign: {{MEMBER}} a trop attendu pour compléter le captcha et a été expulsé !",
-  "JOINED_SERVER": "{{MEMBER}} vient de rejoindre le serveur.",
-  "ARRIVED_MESSAGE": "Hey {{MEMBER}} :wave: Bienvenue sur ce serveur !"
+  "KICKED_INCORRECT_CAPTCHA_LOG": ":no_entry_sign: {MEMBER} a été expulsé pour ne pas avoir complété le captcha !",
+  "KICKED_TOO_WAITING_CAPTCHA_LOG": ":no_entry_sign: {MEMBER} a trop attendu pour compléter le captcha et a été expulsé !",
+  "JOINED_SERVER": "{MEMBER} vient de rejoindre le serveur.",
+  "ARRIVED_MESSAGE": "Hey {MEMBER} :wave: Bienvenue sur ce serveur !"
 }

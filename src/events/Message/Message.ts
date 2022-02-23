@@ -1,5 +1,5 @@
 import {Message} from 'discord.js';
-import {defaultWhiteLink, discordWhiteList, regexLink} from '../../constants';
+import {defaultWhiteLink, discordWhiteList, excludeChannelVerify, regexLink} from '../../constants';
 import {WhiteLinkManagerClass} from '../../manager/WhiteLinkManager/WhiteLinkManager';
 import App from '../../components/App/App';
 import * as translation from '../../message.json';
@@ -13,7 +13,7 @@ export const messageCreate = async (message: Message, client: App, prefixes: str
   const command = args ? args.shift().toLowerCase() : null;
 
   if ((command && command !== 'whitelink') && !message.member.permissions.has('MANAGE_MESSAGES')) {
-    if (message.content.match(regexLink)) {
+    if (!excludeChannelVerify.includes(message.channel.id) && message.content.match(regexLink)) {
       let filesLink: string[] = require(WhiteLinkManagerClass.filePath);
       filesLink = filesLink.concat(defaultWhiteLink);
 

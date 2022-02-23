@@ -2,6 +2,8 @@ import {GuildMember, Message, MessageAttachment, MessageEmbed} from 'discord.js'
 import {Captcha} from '../../services/captcha';
 import App from '../../components/App/App';
 import * as translation from '../../message.json';
+import UtilsStr from '../../utils/UtilsStr';
+import {discordInvite} from '../../constants';
 
 const time = (60 * 10) * 1000; // 10 minutes
 
@@ -14,7 +16,9 @@ export const sendOrModifyEmbed = async (member: GuildMember, embedMessage?: Mess
     description: translation.VERIFICATION_OF_SECURITY_TEXT,
     color: '#f9c466',
     footer: {
-      text: translation.CAPTCHA_AUTOMATIC_KICK.replace(/{{TIME}}/gi, (time/1000).toString()),
+      text: UtilsStr.replace(translation.CAPTCHA_AUTOMATIC_KICK, {
+        TIME: (time/1000).toString(),
+      }),
     },
     image: {
       url: 'attachment://captcha.jpg',
@@ -41,9 +45,10 @@ export const sendOrModifyEmbed = async (member: GuildMember, embedMessage?: Mess
       if (role) {
         if (!member.roles.cache.has(process.env.WELCOME_ROLE)) {
           member.roles.add(role);
-          m.reply(translation.CORRECT_CAPTCHA_MESSAGE
-              .replace(/{{CHANNEL_PRESENTATION}}/gi, '<#896846058179682314>')
-              .replace(/{{CHANNEL_ROLE}}/gi, '<#896846058179682314>'));
+          m.reply(UtilsStr.replace(translation.CORRECT_CAPTCHA_MESSAGE, {
+            CHANNEL_PRESENTATION: '<#896846058179682314>',
+            CHANNEL_ROLE: '<#896846058179682314>',
+          }));
         }
       } else {
         m.reply(translation.ROLE_NOT_FOUND);
@@ -52,30 +57,38 @@ export const sendOrModifyEmbed = async (member: GuildMember, embedMessage?: Mess
         }
       }
       if (channelLog && channelLog.isText()) {
-        channelLog.send(translation.CORRECT_CAPTCHA_MESSAGE_LOG.replace(/{{MEMBER}}/gi, member.user.toString()));
+        channelLog.send(UtilsStr.replace(translation.CORRECT_CAPTCHA_MESSAGE_LOG, {
+          MEMBER: member.user.toString(),
+        }));
       }
       const arrivedChannel = member.guild.channels.cache.get(process.env.ARRIVED_CHANNEL);
       if (arrivedChannel && arrivedChannel.isText()) {
-        arrivedChannel.send(translation.ARRIVED_MESSAGE.replace(/{{MEMBER}}/gi, member.user.toString()));
+        arrivedChannel.send(UtilsStr.replace(translation.ARRIVED_MESSAGE, {
+          MEMBER: member.user.toString(),
+        }));
       }
     } else {
       if (member.guild.members.cache.get(member.id).kickable) {
-        m.reply(`${translation.KICKED_INCORRECT_CAPTCHA}\n${'https://discord.gg/vGURVpCxuK'}`);
+        m.reply(`${translation.KICKED_INCORRECT_CAPTCHA}\n${discordInvite}`);
         member.guild.members.cache.get(member.id).kick('failed captcha');
       }
       if (channelLog && channelLog.isText()) {
-        channelLog.send(translation.KICKED_INCORRECT_CAPTCHA_LOG.replace(/{{MEMBER}}/gi, member.user.toString()));
+        channelLog.send(UtilsStr.replace(translation.KICKED_INCORRECT_CAPTCHA_LOG, {
+          MEMBER: member.user.toString(),
+        }));
       }
     }
   });
   collector.on('end', (collection, reason) => {
     if (reason === 'time') {
       if (member.guild.members.cache.get(member.id).kickable) {
-        member.send(`${translation.KICKED_INCORRECT_CAPTCHA}\n${'https://discord.gg/vGURVpCxuK'}`);
+        member.send(`${translation.KICKED_INCORRECT_CAPTCHA}\n${discordInvite}`);
         member.guild.members.cache.get(member.id).kick('failed captcha');
       }
       if (channelLog && channelLog.isText()) {
-        channelLog.send(translation.KICKED_TOO_WAITING_CAPTCHA_LOG.replace(/{{MEMBER}}/gi, member.user.toString()));
+        channelLog.send(UtilsStr.replace(translation.KICKED_TOO_WAITING_CAPTCHA_LOG, {
+          MEMBER: member.user.toString(),
+        }));
       }
     }
   });
@@ -106,7 +119,9 @@ export const guildMemberAdd = async (member: GuildMember, client: App) => {
             name: `${member.user.username}#${member.user.discriminator}`,
             url: member.avatarURL({size: 256}),
           },
-          description: translation.JOINED_SERVER.replace(/{{MEMBER}}/gi, member.user.toString()),
+          description: UtilsStr.replace(translation.JOINED_SERVER, {
+            MEMBER: member.user.toString(),
+          }),
           color: '#f9c466',
         }),
       ],

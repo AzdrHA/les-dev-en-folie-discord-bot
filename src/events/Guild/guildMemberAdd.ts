@@ -39,7 +39,7 @@ export const sendOrModifyEmbed = async (member: GuildMember, embedMessage?: Mess
   }, max: 1, time: time});
 
   collector.on('collect', (m) => {
-    if (m.content === captcha.letters) {
+    if (m.content.toLowerCase() === captcha.letters.toLowerCase()) {
       collector.stop('end');
       const role = member.guild.roles.cache.get(process.env.WELCOME_ROLE);
       if (role) {

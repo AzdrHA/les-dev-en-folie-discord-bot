@@ -107,9 +107,15 @@ export const sendOrModifyEmbed = async (member: GuildMember, embedMessage?: Mess
 };
 
 export const guildMemberAdd = async (member: GuildMember, client: App) => {
-  const channelLog = member.guild.channels.cache.get('933413157974732842');
+  const arrivedChannel = member.guild.channels.cache.get(process.env.ARRIVED_CHANNEL);
+  if (arrivedChannel && arrivedChannel.isText()) {
+    arrivedChannel.send(UtilsStr.replace(translation.ARRIVED_MESSAGE, {
+      MEMBER: member.user.toString(),
+    }));
+  }
+  /* const channelLog = member.guild.channels.cache.get('933413157974732842');
 
-  sendOrModifyEmbed(member);
+  await sendOrModifyEmbed(member);
 
   if (channelLog && channelLog.isText()) {
     channelLog.send({
@@ -126,5 +132,5 @@ export const guildMemberAdd = async (member: GuildMember, client: App) => {
         }),
       ],
     });
-  }
+  }*/
 };

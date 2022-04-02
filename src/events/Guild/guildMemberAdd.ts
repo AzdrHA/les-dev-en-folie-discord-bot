@@ -113,6 +113,14 @@ export const guildMemberAdd = async (member: GuildMember, client: App) => {
       MEMBER: member.user.toString(),
     }));
   }
+
+  const role = member.guild.roles.cache.get(process.env.WELCOME_ROLE);
+  if (role) {
+    if (!member.roles.cache.has(process.env.WELCOME_ROLE)) {
+      await member.roles.add(role);
+    }
+  }
+
   /* const channelLog = member.guild.channels.cache.get('933413157974732842');
 
   await sendOrModifyEmbed(member);

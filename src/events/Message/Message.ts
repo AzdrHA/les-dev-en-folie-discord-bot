@@ -1,6 +1,5 @@
-import {Message, Permissions} from 'discord.js';
+import {Message} from 'discord.js';
 import {
-  categoryWelcomeChannel,
   defaultWhiteLink,
   discordWhiteList,
   excludeChannelVerify,
@@ -9,8 +8,6 @@ import {
 import {WhiteLinkManagerClass} from '../../manager/WhiteLinkManager/WhiteLinkManager';
 import App from '../../components/App/App';
 import * as translation from '../../message.json';
-import {ChannelTypes} from 'discord.js/typings/enums';
-import {sendOrModifyEmbed} from '../Guild/guildMemberAdd';
 
 export const messageCreate = async (message: Message, client: App, prefixes: string[]): Promise<any> => {
   if (message.author.bot || message.guild && (!discordWhiteList.includes(message.guild.id))) return;

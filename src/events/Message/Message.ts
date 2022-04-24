@@ -10,8 +10,12 @@ import App from '../../components/App/App';
 import * as translation from '../../message.json';
 
 export const messageCreate = async (message: Message, client: App, prefixes: string[]): Promise<any> => {
+  console.log('0.1');
   if (message.author.bot || message.guild && (!discordWhiteList.includes(message.guild.id))) return;
+  console.log('0.2');
+
   if (client.development && (message.channel.id !== '933413191994728510' || (message.author.id !== '311874717504110593' && message.author.id !== '649352959364169739'))) return;
+  console.log('0.3');
 
   const prefix = prefixes.find((p) => message.content.toLowerCase().startsWith(p));
   const args: string[] = prefix ? message.content.slice(prefix.length).trim().split(/ +/g) : null;

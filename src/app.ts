@@ -4,7 +4,7 @@ import App from './components/App/App';
 dotenv.config();
 
 new App({
-  development: Boolean(process.env.DEVELOPMENT),
+  development: process.env.DEVELOPMENT === 'true',
   token: process.env.TOKEN,
   prefixes: ['!', '<@899343860575121470>', '<@!899343860575121470>'],
   intents: [

@@ -21,7 +21,7 @@ export class Captcha {
     const allLetters = fs.readdirSync(this.lettersPath);
     const line = allLines[Math.floor(Math.random() * allLines.length)];
 
-    this.canvas = createCanvas(125, 25);
+    this.canvas = createCanvas(125, 30);
     const ctx = this.canvas.getContext('2d');
 
     const canvasLine = await loadImage(this.linePath + '/' + line);

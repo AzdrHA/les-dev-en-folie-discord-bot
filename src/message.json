@@ -12,7 +12,7 @@
   "ROLE_NOT_FOUND_LOG": "Rôle de bienvenu introuvable",
   "CORRECT_CAPTCHA_MESSAGE_LOG": ":white_check_mark: {MEMBER} a passé la vérification !",
   "KICKED_INCORRECT_CAPTCHA": ":no_entry_sign: Vous avez été Kick pour Captcha incorrect!",
-  "KICKED_INCORRECT_CAPTCHA_LOG": ":no_entry_sign: {MEMBER} a été expulsé pour ne pas avoir complété le captcha !",
+  "KICKED_INCORRECT_CAPTCHA_LOG": ":no_entry_sign: {MEMBER} a été expulsé pour avoir mal complété le captcha !\nEntré: {ENTER} -> Demandé: {ASKED}",
   "KICKED_TOO_WAITING_CAPTCHA_LOG": ":no_entry_sign: {MEMBER} a trop attendu pour compléter le captcha et a été expulsé !",
   "JOINED_SERVER": "{MEMBER} vient de rejoindre le serveur.",
   "ARRIVED_MESSAGE": "Hey {MEMBER} :wave: Bienvenue sur ce serveur !"
